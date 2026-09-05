@@ -73,8 +73,11 @@ export const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="text-sm font-bold text-white">Email Us</h4>
-                  <a href="mailto:info@cloudmatrixsystems.com" className="text-xs text-slate-400 hover:text-cyan-400 transition-colors">
-                    info@cloudmatrixsystems.com
+                  <a 
+                    href="mailto:chainguardintelligence@gmail.com" 
+                    className="text-xs text-cyan-400 hover:underline"
+                  >
+                    chainguardintelligence@gmail.com
                   </a>
                 </div>
               </div>
@@ -86,8 +89,8 @@ export const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="text-sm font-bold text-white">Call Us</h4>
-                  <a href="tel:+233591234567" className="text-xs text-slate-400 hover:text-cyan-400 transition-colors">
-                    +233 59 123 4567
+                  <a href="tel:+233558024125" className="text-xs text-cyan-400 hover:underline">
+                    055 8024125
                   </a>
                 </div>
               </div>
