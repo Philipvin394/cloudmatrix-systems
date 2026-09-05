@@ -14,11 +14,34 @@ export const ContactSection = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic / API endpoint integration point
-    alert("Thank you! Your message has been sent to CloudMatrix Systems.");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        alert("Thank you! Your message has been sent to CloudMatrix Systems.");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        alert(data.error || "Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      alert("An error occurred while sending your message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -150,9 +173,10 @@ export const ContactSection = () => {
 
               <Button
                 type="submit"
-                className="w-full bg-gradient-to-r from-[#00F2FE] to-[#0072FF] text-slate-950 font-bold py-6 rounded-xl text-sm shadow-[0_0_20px_rgba(0,242,254,0.35)] hover:opacity-90 transition-all cursor-pointer flex items-center justify-center gap-2"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-[#00F2FE] to-[#0072FF] text-slate-950 font-bold py-6 rounded-xl text-sm shadow-[0_0_20px_rgba(0,242,254,0.35)] hover:opacity-90 transition-all cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send Message <Send className="w-4 h-4" />
+                {isSubmitting ? "Sending..." : "Send Message"} <Send className="w-4 h-4" />
               </Button>
             </form>
           </div>
