@@ -11,8 +11,8 @@ const plans = [
   {
     name: "Starter",
     description: "Perfect for individuals and small projects.",
-    monthlyPrice: 29,
-    yearlyPrice: 23,
+    monthlyPrice: 350,
+    yearlyPrice: 280,
     popular: false,
     cta: "Get Started",
     ctaVariant: "outline" as const,
@@ -26,8 +26,8 @@ const plans = [
   {
     name: "Pro",
     description: "Great for growing businesses.",
-    monthlyPrice: 79,
-    yearlyPrice: 63,
+    monthlyPrice: 850,
+    yearlyPrice: 680,
     popular: true,
     cta: "Get Started",
     ctaVariant: "cyan" as const,
@@ -41,8 +41,8 @@ const plans = [
   {
     name: "Business",
     description: "Advanced for scaling businesses.",
-    monthlyPrice: 149,
-    yearlyPrice: 119,
+    monthlyPrice: 1800,
+    yearlyPrice: 1440,
     popular: false,
     cta: "Get Started",
     ctaVariant: "outline" as const,
@@ -110,7 +110,7 @@ export const PricingSection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {plans.map((plan, index) => {
             const price = typeof plan.monthlyPrice === "number"
-              ? `$${isYearly ? plan.yearlyPrice : plan.monthlyPrice}`
+              ? `GH₵ ${isYearly ? plan.yearlyPrice : plan.monthlyPrice}`
               : plan.monthlyPrice;
 
             return (
@@ -142,7 +142,7 @@ export const PricingSection = () => {
 
                   {/* Price Block */}
                   <div className="flex items-baseline gap-1">
-                    <span className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+                    <span className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
                       {price}
                     </span>
                     {typeof plan.monthlyPrice === "number" && (
