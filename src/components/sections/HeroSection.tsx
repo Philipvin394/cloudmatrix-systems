@@ -143,15 +143,6 @@ export const HeroSection = () => {
 
           </div>
         </GlassCard>
-
-        {/* Metrics Row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <StatCard icon={Users} value="50+" label="Happy Clients" />
-          <StatCard icon={CheckCircle2} value="120+" label="Projects Delivered" />
-          <StatCard icon={Activity} value="99.9%" label="Uptime & Reliability" />
-          <StatCard icon={Headset} value="24/7" label="Support" />
-        </div>
-
       </div>
     </section>
   );

@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
 
-// Pass credentials explicitly from Amplify environment variables
 const ses = new SESClient({
-  region: process.env.AWS_REGION || "us-east-1",
+  region: process.env.CUSTOM_AWS_REGION || "us-east-1",
   credentials: {
-    accessKeyId: process.env.AKIAVPZQGWQLTARSXXNX || "",
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || "",
+    accessKeyId: process.env.CUSTOM_AWS_ACCESS_KEY_ID || "",
+    secretAccessKey: process.env.CUSTOM_AWS_SECRET_ACCESS_KEY || "",
+    sessionToken: undefined,
   },
 });
 
