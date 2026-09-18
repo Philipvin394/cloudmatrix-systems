@@ -1,15 +1,6 @@
 import { NextResponse } from "next/server";
 import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
 
-const ses = new SESClient({
-  region: process.env.CUSTOM_AWS_REGION || "us-east-1",
-  credentials: {
-    accessKeyId: process.env.CUSTOM_AWS_ACCESS_KEY_ID || "",
-    secretAccessKey: process.env.CUSTOM_AWS_SECRET_ACCESS_KEY || "",
-    sessionToken: undefined,
-  },
-});
-
 export async function POST(request: Request) {
   try {
     const { name, email, message } = await request.json();
@@ -20,6 +11,38 @@ export async function POST(request: Request) {
         { status: 400 },
       );
     }
+
+    // Read variables inside the handler
+    const accessKeyId =
+      process.env.CUSTOM_AWS_ACCESS_KEY_ID ||
+      process.env.AWS_ACCESS_KEY_ID ||
+      "";
+    const secretAccessKey =
+      process.env.CUSTOM_AWS_SECRET_ACCESS_KEY ||
+      process.env.AWS_SECRET_ACCESS_KEY ||
+      "";
+    const region =
+      process.env.CUSTOM_AWS_REGION || process.env.AWS_REGION || "us-east-1";
+
+    // Debug check: ensures runtime actually sees credentials
+    if (!accessKeyId || !secretAccessKey) {
+      return NextResponse.json(
+        {
+          error:
+            "Server Configuration Error: Missing AWS IAM credentials in environment.",
+        },
+        { status: 500 },
+      );
+    }
+
+    // Instantiate client inside request scope without inherited session token
+    const ses = new SESClient({
+      region,
+      credentials: {
+        accessKeyId,
+        secretAccessKey,
+      },
+    });
 
     const command = new SendEmailCommand({
       Destination: {
