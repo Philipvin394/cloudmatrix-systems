@@ -35,12 +35,13 @@ export async function POST(request: Request) {
       );
     }
 
-    // Instantiate client inside request scope without inherited session token
+    // Explicitly set sessionToken to undefined to prevent Amplify session token collision
     const ses = new SESClient({
       region,
       credentials: {
         accessKeyId,
         secretAccessKey,
+        sessionToken: undefined,
       },
     });
 
