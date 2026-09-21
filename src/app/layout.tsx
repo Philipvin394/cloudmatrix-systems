@@ -21,12 +21,14 @@ export const metadata: Metadata = {
   description:
     "Helping startups and enterprise businesses build, secure, and scale modern digital infrastructure with cloud and AI-powered solutions.",
   icons: {
-    icon: "/cm.png",
+    icon: [
+      { url: "/cm.png" },
+      { url: "/cm.png", type: "image/png" },
+    ],
     shortcut: "/cm.png",
     apple: "/cm.png",
   },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
