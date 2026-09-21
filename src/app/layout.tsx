@@ -22,11 +22,11 @@ export const metadata: Metadata = {
     "Helping startups and enterprise businesses build, secure, and scale modern digital infrastructure with cloud and AI-powered solutions.",
   icons: {
     icon: [
-      { url: "/cm.png" },
-      { url: "/cm.png", type: "image/png" },
+      { url: "/cm.png?v=2" },
+      { url: "/cm.png?v=2", type: "image/png" },
     ],
-    shortcut: "/cm.png",
-    apple: "/cm.png",
+    shortcut: "/cm.png?v=2",
+    apple: "/cm.png?v=2",
   },
 };
 export default function RootLayout({
