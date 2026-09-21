@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { Toaster } from "react-hot-toast";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -39,6 +40,33 @@ export default function RootLayout({
         <Navbar />
         <div className="flex-1 pt-20">{children}</div>
         <Footer />
+        
+        {/* Modern Toast Notification Container */}
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            style: {
+              background: "#0f172a",
+              color: "#f8fafc",
+              border: "1px solid #1e293b",
+              borderRadius: "0.75rem",
+              fontSize: "0.875rem",
+              boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.5)",
+            },
+            success: {
+              iconTheme: {
+                primary: "#0ea5e9",
+                secondary: "#0f172a",
+              },
+            },
+            error: {
+              iconTheme: {
+                primary: "#ef4444",
+                secondary: "#0f172a",
+              },
+            },
+          }}
+        />
       </body>
     </html>
   );
