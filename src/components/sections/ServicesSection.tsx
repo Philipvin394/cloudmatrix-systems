@@ -69,6 +69,27 @@ const services = [
   },
 ];
 
+const colorStyles = {
+  cyan: {
+    badgeBg: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
+    textHover: "group-hover:text-cyan-300",
+    arrowHover: "group-hover:text-cyan-400",
+    linkText: "text-cyan-400",
+  },
+  blue: {
+    badgeBg: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+    textHover: "group-hover:text-blue-300",
+    arrowHover: "group-hover:text-blue-400",
+    linkText: "text-blue-400",
+  },
+  purple: {
+    badgeBg: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+    textHover: "group-hover:text-purple-300",
+    arrowHover: "group-hover:text-purple-400",
+    linkText: "text-purple-400",
+  },
+};
+
 export const ServicesSection = () => {
   return (
     <AnimatedSection id="services" className="py-20 relative">
@@ -85,33 +106,36 @@ export const ServicesSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => {
             const Icon = service.icon;
-            return (
-              <GlassCard
-                key={index}
-                glowColor={service.color as "cyan" | "purple" | "blue"}
-                className="flex flex-col justify-between group cursor-pointer space-y-4"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="p-3 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 group-hover:scale-110 transition-transform">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <ArrowUpRight className="w-5 h-5 text-slate-600 group-hover:text-cyan-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm text-slate-400 leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
+            const theme = colorStyles[service.color as keyof typeof colorStyles];
 
-                <div className="pt-2">
-                  <span className="text-xs font-semibold text-cyan-400 flex items-center gap-1 group-hover:underline">
-                    Learn more <ArrowRight className="w-3.5 h-3.5" />
-                  </span>
-                </div>
-              </GlassCard>
+            return (
+              <Link key={index} href="#contact" className="block group">
+                <GlassCard
+                  glowColor={service.color as "cyan" | "purple" | "blue"}
+                  className="h-full flex flex-col justify-between space-y-4 p-6 transition-all duration-300"
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className={`p-3 rounded-xl border ${theme.badgeBg} group-hover:scale-110 transition-transform`}>
+                        <Icon className="w-6 h-6" />
+                      </div>
+                      <ArrowUpRight className={`w-5 h-5 text-slate-600 ${theme.arrowHover} group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all`} />
+                    </div>
+                    <h3 className={`text-xl font-bold text-white ${theme.textHover} transition-colors`}>
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-slate-400 leading-relaxed">
+                      {service.description}
+                    </p>
+                  </div>
+
+                  <div className="pt-2">
+                    <span className={`text-xs font-semibold ${theme.linkText} flex items-center gap-1 group-hover:underline`}>
+                      Learn more <ArrowRight className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+                </GlassCard>
+              </Link>
             );
           })}
         </div>
@@ -124,7 +148,7 @@ export const ServicesSection = () => {
           </div>
           <Button
             asChild
-            className="bg-gradient-to-r from-[#00F2FE] to-[#0072FF] text-slate-950 font-bold px-6 py-5 rounded-xl cursor-pointer"
+            className="bg-gradient-to-r from-[#00F2FE] to-[#0072FF] text-slate-950 font-bold px-6 py-5 rounded-xl cursor-pointer hover:opacity-90 transition-opacity"
           >
             <Link href="#contact" className="flex items-center gap-2">
               Talk to an Expert <ArrowRight className="w-4 h-4" />
