@@ -3,7 +3,7 @@ import { ServicesSection } from "@/components/sections/ServicesSection";
 import { SolutionsSection } from "@/components/sections/SolutionsSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { PricingSection } from "@/components/sections/PricingSection";
-import { ContactSection } from "@/components/sections/ContactSection";
+import ContactSection from "@/components/sections/ContactSection";
 
 export default function Home() {
   return (
