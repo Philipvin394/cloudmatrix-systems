@@ -73,7 +73,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Email Us</p>
-                    <p className="text-sm font-semibold text-slate-200">contact@cloudmatrixsystems.com</p>
+                    <p className="text-sm font-semibold text-slate-200">chaingaurd@gmail.com</p>
                   </div>
                 </div>
 
@@ -83,7 +83,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Call Us</p>
-                    <p className="text-sm font-semibold text-slate-200">+233 55 000 0000</p>
+                    <p className="text-sm font-semibold text-slate-200">+233 55 802 4125</p>
                   </div>
                 </div>
 
